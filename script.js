@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // a grayscale particle field, and interactive mouse-move parallax.
     const heroCanvas = document.getElementById('hero-canvas');
     if (heroCanvas) {
-        let scene, camera, renderer, shape, particles;
+        let scene, camera, renderer, particles;
         let mouseX = 0, mouseY = 0;
         const windowHalfX = window.innerWidth / 2;
         const windowHalfY = window.innerHeight / 2;
@@ -65,11 +65,6 @@ document.addEventListener('DOMContentLoaded', function() {
             renderer.setSize(window.innerWidth, window.innerHeight);
             renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-            // 3D Object (Icosahedron Wireframe)
-            const geometry = new THREE.IcosahedronGeometry(1.5, 1);
-            const material = new THREE.MeshBasicMaterial({ color: 0xffffff, wireframe: true, transparent: true, opacity: 0.1 });
-            shape = new THREE.Mesh(geometry, material);
-            scene.add(shape);
 
             // Particle System
             const particlesGeometry = new THREE.BufferGeometry();
@@ -107,8 +102,6 @@ document.addEventListener('DOMContentLoaded', function() {
             camera.lookAt(scene.position);
 
             // Constant rotation for ambient motion
-            shape.rotation.y += 0.0005;
-            shape.rotation.x += 0.0005;
             particles.rotation.y += 0.0002;
 
             renderer.render(scene, camera);
